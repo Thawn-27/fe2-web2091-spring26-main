@@ -1,6 +1,7 @@
 import { Table, Image, Spin, Button, message, Popconfirm } from "antd";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // 1. Khai báo Interface (để hết lỗi record: Story)
 interface Story {
@@ -58,14 +59,20 @@ const Lab5 = () => {
       title: "Hành động",
       key: "action",
       render: (_: any, record: Story) => (
-        <Popconfirm 
-          title="Bạn có chắc chắn muốn xóa?" 
-          onConfirm={() => deleteMutation.mutate(record.id)}
-          okText="Có"
-          cancelText="Không"
-        >
-          <Button type="primary" danger size="small">Xóa</Button>
-        </Popconfirm>
+<>
+          <Popconfirm
+            title="Delete the story"
+            description="Are you sure to delete this story?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => deleteMutation.mutate(record.id)}
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>
+          <Button type="primary">
+            <Link to={`/edit/${record.id}`}>Edit</Link>
+          </Button>
+        </>
       ),
     },
   ];

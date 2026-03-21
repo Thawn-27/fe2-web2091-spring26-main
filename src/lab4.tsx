@@ -3,7 +3,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-// type
+
 interface Story {
   title: string;
   author?: string;
